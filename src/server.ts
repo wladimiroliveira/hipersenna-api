@@ -1,13 +1,14 @@
 import fastify from "fastify";
 import routes from "./routes.js"
-import swagger from "@fastify/swagger"
-import swaggerUI from "@fastify/swagger-ui"
+import fastifyCors from "@fastify/cors";
 
 const app = fastify();
 
 await app.register(import('@fastify/swagger'))
 
 declare module "fastify"
+
+app.register(fastifyCors, { origin: "*" })
 
 app.register(routes);
 
