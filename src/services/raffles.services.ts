@@ -31,7 +31,7 @@ export const getRafflesService = async ({
   if (nfc_key) whereClause.nfc_key = nfc_key;
   if (cpf) {
     whereClause.hsraffle_clients = {
-      cpf: cpf
+      cpf: cpf,
     };
   }
 
@@ -39,7 +39,7 @@ export const getRafflesService = async ({
     where: whereClause,
     include: {
       hsraffle_clients: true,
-    }
+    },
   });
 };
 
@@ -73,9 +73,9 @@ export const createRaffleService = async ({
     throw new Error("Já existem rifas cadastradas para esse cupom");
   }
 
-  if (cpf == "11111111111" || null) {
-    throw new Error("CPF não encontrado no cupom fiscal.");
-  }
+  // if (cpf == "11111111111" || null) {
+  //   throw new Error("CPF não encontrado no cupom fiscal.");
+  // }
 
   const client = await getRaffleClientsService({ cpf });
 
